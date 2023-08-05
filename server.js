@@ -1,11 +1,10 @@
 import express from "express";
 import bodyParser from "body-parser";
-import router from './src/features/product/product_router.js'
+import router from './src/features/product/product_router.js';
 
 const server = express();
 
 server.use(bodyParser.json());
-
 server.use("/api/products", router);
 
 server.get("/", (req, res) => {

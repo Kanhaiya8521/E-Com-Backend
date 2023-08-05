@@ -6,7 +6,18 @@ export default class ProductController {
      return res.status(200).send(products);
   }
 
-  addProduct(req, res) {}
+  addProduct(req, res) {
+    const {name, price, sizes } = req.body;
+    console.log(req.file)
+    const newProduct = {
+      name,
+      price: parseFloat(price),
+      sizes: sizes.split(','),
+      imageUrl: req.file.filename,
+    };
+    const createRecord = ProductModel.add(newProduct);
+    res.status(201).send(createRecord);
+  }
 
   rateProduct(req, res) {}
 
