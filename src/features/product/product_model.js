@@ -9,6 +9,11 @@ export default class ProductModel {
         this.size = size;
     }
 
+    static GetOneProduct(id) {
+      const product = products.find(i => i.id == id);
+      return product;
+    }
+
     static GetAll() {
         return products;
     }
