@@ -1,11 +1,14 @@
 import express from "express";
 import bodyParser from "body-parser";
-import router from './src/features/product/product_router.js';
+import productRouter from './src/features/product/product_router.js';
+import userRouter from './src/features/user/user_routes.js';
 
 const server = express();
 
+server.use(express.json());
 server.use(bodyParser.json());
-server.use("/api/products", router);
+server.use("/api/products", productRouter);
+server.use("/api/users", userRouter);
 
 server.get("/", (req, res) => {
   res.send("Welcome to the E-commerce website!");

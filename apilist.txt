@@ -3,3 +3,7 @@ Get Products
 Add a Product
 Get one Product
 Filter product
+
+UserController
+Sign up - Email, name, password, TypeOfUser(customer, seller)
+Sign in - (Email, Password)
