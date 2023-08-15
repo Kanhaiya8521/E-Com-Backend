@@ -1,0 +1,1 @@
+note 1. mailer.js is not part of this project, I'm adding here for only backup in future
