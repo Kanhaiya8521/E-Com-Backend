@@ -5,10 +5,13 @@ const router = express.Router();
 
 const productController = new ProductController();
 
+router.post("/rate", productController.rateProduct)
 router.get('/', productController.getAllProducts);
-router.get("/:id", productController.getOneProduct);
+router.post("/", upload.single("imageUrl"), productController.addProduct);
 
-router.post('/', upload.single('imageUrl'), productController.addProduct);
+router.get("/:id", productController.getOneProduct);
+router.post('/filter', productController.filterProducts);
+
 
 export default router;
 

@@ -1,3 +1,4 @@
+import UserModel from './../user/user_model.js';
 export default class ProductModel {
     constructor(id, name, desc, price, imageUrl, category, size){
         this.id = id;
@@ -15,7 +16,7 @@ export default class ProductModel {
     }
 
     static GetAll() {
-        return products;
+      return products;
     }
 
     static add(product) {
@@ -24,7 +25,59 @@ export default class ProductModel {
       return product;
     }
 
-    
+
+    static rateProduct(userID, productID, rating) {
+      // 1. Validate user and product
+      const user = UserModel.getAll().find((u) => u.id == userID);
+      if(!user){
+        return 'User not found';
+      }
+      // Validate Product
+      const product = products.find((p) => p.id == productID);
+      if(!product){
+        return 'Product not found';
+      }
+
+      // 2. check if there are any ratings and if not then add rating array
+      if(!product.ratings) {
+        product.ratings = [];
+        product.rating.push({
+          userID: userID,
+          rating: rating,
+        });
+      } else {
+        // check if user rating is already available
+        const existingRatingIndex = product.ratings.findIndex((r) => r.userID == userID);
+        if(existingRatingIndex >= 0){
+          product.ratings[existingRatingIndex] = {
+            userID: userID,
+            rating: rating,
+          };
+        } else {
+          // 4. if no existing rating, then add new rating
+          product.ratings.push({
+            userID: userID,
+            rating: rating,
+          });
+        }
+      }
+    }
+
+    static filter(minPrice, maxPrice, category) {
+      // if(product.price >= minPrice && 
+      //     product.price <= maxPrice && 
+      //     product.category == category){
+      //       // 
+      //     }
+      const result = products.filter((product) => {
+        return (
+          (!minPrice || product.price >= minPrice) && 
+          (!maxPrice || product.price <= maxPrice) && 
+          (!category || product.category == category)
+        );
+      });
+      return result;
+    }  
 };
 
 var products = [
@@ -34,7 +87,7 @@ var products = [
     "Description for Product 1",
     19.99,
     "https://m.media-amazon.com/images/I/51-nXsSRfZL._SX328_BO1,204,203,200_.jpg",
-    "Cateogory1"
+    "Category1"
   ),
   new ProductModel(
     2,
@@ -42,7 +95,7 @@ var products = [
     "Description for Product 2",
     29.99,
     "https://m.media-amazon.com/images/I/51xwGSNX-EL._SX356_BO1,204,203,200_.jpg",
-    "Cateogory2",
+    "Category2",
     ["M", "XL"]
   ),
   new ProductModel(
@@ -51,7 +104,7 @@ var products = [
     "Description for Product 3",
     39.99,
     "https://m.media-amazon.com/images/I/31PBdo581fL._SX317_BO1,204,203,200_.jpg",
-    "Cateogory3",
+    "Category3",
     ["M", "XL", "S"]
   ),
 ];
