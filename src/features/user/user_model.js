@@ -34,7 +34,7 @@ export default class UserModel {
 let users = [
   {
     id: 1,
-    name: "seller",
+    name: "Seller User",
     email: "seller@example.com",
     password: "password@example",
     type: "seller",

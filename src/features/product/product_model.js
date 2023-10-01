@@ -39,9 +39,10 @@ export default class ProductModel {
       }
 
       // 2. check if there are any ratings and if not then add rating array
+      console.log("product.ratings", product.ratings);
       if(!product.ratings) {
         product.ratings = [];
-        product.rating.push({
+        product.ratings.push({
           userID: userID,
           rating: rating,
         });
@@ -64,11 +65,6 @@ export default class ProductModel {
     }
 
     static filter(minPrice, maxPrice, category) {
-      // if(product.price >= minPrice && 
-      //     product.price <= maxPrice && 
-      //     product.category == category){
-      //       // 
-      //     }
       const result = products.filter((product) => {
         return (
           (!minPrice || product.price >= minPrice) && 
@@ -77,7 +73,9 @@ export default class ProductModel {
         );
       });
       return result;
-    }  
+    } 
+    
+    
 };
 
 var products = [

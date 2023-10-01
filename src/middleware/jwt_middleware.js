@@ -3,9 +3,12 @@ import jwt from 'jsonwebtoken';
 const jwtAuth = (req, res, next) => {
     // console.log(req.headers);
     // 1. Read the token
-    const token = req.headers["authorization"]
-      .replace("Bearer ", "")
-      .replace("Bearer ", "");
+    let token = req.headers["authorization"];
+    if (!token) return res.status(401).send("Unauthorized");
+     token = token
+       ?.replace("Bearer ", "")
+       ?.replace("Bearer ", "")
+       ?.replace("bearer ", "");
     // console.log('token', token);
     // 2. if no token, return the error.
     if(!token) return res.status(401).send('Unauthorized');
