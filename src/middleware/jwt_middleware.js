@@ -19,7 +19,9 @@ const jwtAuth = (req, res, next) => {
         // console.log(payload);
         jwt.verify(token, "pwuB6Ynnry", (err, user) => {
           if (err) return res.sendStatus(403); // Forbidden
+          console.log('user', user);
           req.user = user; // Store the user object in the request
+          req.userID = user.userID;
           //   next(); // Move to the next middleware
         //   console.log('user', user)
         });

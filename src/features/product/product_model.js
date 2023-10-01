@@ -39,7 +39,6 @@ export default class ProductModel {
       }
 
       // 2. check if there are any ratings and if not then add rating array
-      console.log("product.ratings", product.ratings);
       if(!product.ratings) {
         product.ratings = [];
         product.ratings.push({
