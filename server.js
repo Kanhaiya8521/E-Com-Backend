@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import swagger from "swagger-ui-express";
+import cors from 'cors';
 import productRouter from './src/features/product/product_router.js';
 import cartRouter from './src/features/cartItems/cart_items_routes.js'
 import userRouter from './src/features/user/user_routes.js';
@@ -12,16 +13,24 @@ import apiDocs from "./swagger.json" assert { type: "json" };
 const server = express();
 
 // CORS policy configuration
-server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:5500');
-  res.header('Access-Control-Allow-Headers', '*');
-  res.header('Access-Control-Allow-Methods', '*');
-  // return ok for preflight request.
-  if(req.method == "OPTIONS"){
-    return res.sendStatus(200);
-  }
-  next();
-})
+// cors using library
+const corsOptions = {
+  origin: 'http://localhost:5500'
+}
+server.use(cors(corsOptions));
+
+
+// cors using headers
+// server.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', 'http://localhost:5500');
+//   res.header('Access-Control-Allow-Headers', '*');
+//   res.header('Access-Control-Allow-Methods', '*');
+//   // return ok for preflight request.
+//   if(req.method == "OPTIONS"){
+//     return res.sendStatus(200);
+//   }
+//   next();
+// })
 
 server.use(express.json());
 server.use(bodyParser.json());
