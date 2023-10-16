@@ -1,18 +1,28 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
     "title": "E-commerce API",
     "description": "API for E-commerce Services",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
-  "securityDefinitions": {
-    "JWT": {
-      "in": "header",
-      "name": "Authorization",
-      "type": "apiKey"
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    },
+    {
+      "url": "http://localhost:5000"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "JWT": {
+        "in": "header",
+        "name": "Authorization",
+        "type": "apiKey"
+      }
     }
   },
+
   "paths": {
     "/api/products": {
       "get": {
@@ -20,9 +30,9 @@
         "summary": "products",
         "description": "get all products",
         "security": [
-            {
-                "JWT": {}
-            }
+          {
+            "JWT": {}
+          }
         ],
         "responses": {
           "200": {
@@ -39,24 +49,24 @@
         "tags": ["Users"],
         "summary": "Login",
         "description": "User login to get jwt token",
-        "parameters": [
+        "requestBody": {
+          "content":
           {
-            "in": "body",
-            "name": "body",
-            "description": "User Credentials",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "type": "string"
-                },
-                "password": {
-                  "type": "string"
-                }
-              }
-            }
+           "application/json": {
+             "schema": {
+               "type": "object",
+               "properties": {
+                 "email": {
+                   "type": "string"
+                 },
+                 "password": {
+                   "type": "string"
+                 }
+               }
+             }
+           }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "Ok"
