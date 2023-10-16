@@ -5,10 +5,38 @@
     "description": "API for E-commerce Services",
     "version": "1.0.0"
   },
-  "host": "http://localhost:3000",
+  "host": "localhost:3000",
+  "securityDefinitions": {
+    "JWT": {
+      "in": "header",
+      "name": "Authorization",
+      "type": "apiKey"
+    }
+  },
   "paths": {
+    "/api/products": {
+      "get": {
+        "tags": ["Products"],
+        "summary": "products",
+        "description": "get all products",
+        "security": [
+            {
+                "JWT": {}
+            }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
     "/api/users/signin": {
       "post": {
+        "tags": ["Users"],
         "summary": "Login",
         "description": "User login to get jwt token",
         "parameters": [
