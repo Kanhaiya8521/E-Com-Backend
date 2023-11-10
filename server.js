@@ -49,6 +49,12 @@ server.get("/", (req, res) => {
   res.send("Welcome to the E-commerce website!");
 });
 
+// Error handling middleware
+server.use((err, req, res, next) => {
+  console.log(err);
+  res.status(503).send('something went wrong, please try later');
+})
+
 // moddleware for handling 404 requests
 server.use((req, res) => {
   res.status(404).send('API not found, please check your path');
