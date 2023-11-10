@@ -9,6 +9,7 @@ import jwtAuth from "./src/middleware/jwt_middleware.js";
 // import apiDocs from './swagger.json';
 import apiDocs from "./swagger.json" assert { type: "json" };
 import loggerMiddleware from './src/middleware/logger_middleware.js';
+import { ApplicationError } from "./src/error_handler/applicationError.js";
 
 
 const server = express();
@@ -51,8 +52,12 @@ server.get("/", (req, res) => {
 
 // Error handling middleware
 server.use((err, req, res, next) => {
-  console.log(err);
-  res.status(503).send('something went wrong, please try later');
+  if(err instanceof ApplicationError) {
+    console.log('**************');
+    return res.status(err.code).send(err.message);
+  }
+
+  res.status(500).send('something went wrong, please try later');
 })
 
 // moddleware for handling 404 requests
