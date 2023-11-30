@@ -20,3 +20,8 @@
 {"level":"info","message":"/api/products/rate?userID=2&productID=10&rating=4 - {}","service":"request-logging"}
 {"level":"info","message":"/api/products/rate?userID=20&productID=1&rating=4 - {}","service":"request-logging"}
 {"level":"info","message":"/api/products/rate?userID=2&productID=1&rating=4 - {}","service":"request-logging"}
+{"level":"info","message":"/api/users/signup - {\"name\":\"chaman\",\"email\":\"chaman@gmail.com\",\"password\":\"chaman@123\",\"type\":\"customer\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signup - {\"name\":\"kanhaiya\",\"email\":\"kanhaiya@gmail.com\",\"password\":\"kanhaiya@123\",\"type\":\"customer\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signup - {\"name\":\"kanhaiya\",\"email\":\"kanhaiya@gmail.com\",\"password\":\"kanhaiya@123\",\"type\":\"customer\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signup - {\"name\":\"kanhaiya\",\"email\":\"kanhaiya@gmail.com\",\"password\":\"kanhaiya@123\",\"type\":\"customer\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signup - {\"name\":\"kanhaiya\",\"email\":\"kanhaiya@gmail.com\",\"password\":\"kanhaiya@123\",\"type\":\"customer\"}","service":"request-logging"}

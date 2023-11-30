@@ -10,6 +10,7 @@ import jwtAuth from "./src/middleware/jwt_middleware.js";
 import apiDocs from "./swagger.json" assert { type: "json" };
 import loggerMiddleware from './src/middleware/logger_middleware.js';
 import { ApplicationError } from "./src/error_handler/applicationError.js";
+import connectToMongoDB from "./src/config/mongodb.js";
 
 
 const server = express();
@@ -67,4 +68,5 @@ server.use((req, res) => {
 
 server.listen(3000, () => {
   console.log("Server is listening on 3000");
+  connectToMongoDB();
 });
