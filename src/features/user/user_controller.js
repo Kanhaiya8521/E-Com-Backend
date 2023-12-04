@@ -2,6 +2,7 @@ import UserModel from "./user_schema.js";
 import jwt from "jsonwebtoken";
 import UserRepository from "./user_repository.js";
 import bcrypt from "bcrypt";
+import { ApplicationError } from "../../error_handler/applicationError.js";
 
 export default class UserController {
   constructor() {
@@ -10,10 +11,13 @@ export default class UserController {
     this.signIn = this.signIn.bind(this);
   }
 
-  async signUp(req, res) {
+  async signUp(req, res, next) {
     try {
       const { name, email, password, type } = req.body;
-      console.log("this is", req.body);
+      if(!name || !email || !password) {
+        // return res.status(404).send('all field required');
+        return next(new ApplicationError('name, email and password are required', 404));
+      }
 
       const hashedPassword = await bcrypt.hash(password, 12);
       const user = new UserModel({
@@ -25,20 +29,27 @@ export default class UserController {
       await this.userRepository.signUp(user);
       res.status(201).send(user);
     } catch (error) {
-      console.log(error);
-      res.status(500).send(error);
+      console.log("error:", error);
+      res.status(500).json({
+        status: error.code || 500,
+        message: error.message
+      });
     }
   }
 
   async signIn(req, res, next) {
     try {
+      const {email, password} = req.body;
+      if(!email || !password) {
+        return next(new ApplicationError("email and password are required", 404));
+      }
       // 1. Find user by email.
-      const user = await this.userRepository.findByEmail(req.body.email);
+      const user = await this.userRepository.findByEmail(email);
       if (!user) {
-        return res.status(400).send("Incorrect Credentials");
+        return next(new ApplicationError("Incorrect Credentials", 400))
       } else {
         // 2. Compare password with hashed password.
-        const result = await bcrypt.compare(req.body.password, user.password);
+        const result = await bcrypt.compare(password, user.password);
         if (result) {
           // 3. Create token.
           const token = jwt.sign(
@@ -54,12 +65,12 @@ export default class UserController {
           // 4. Send token.
           return res.status(200).send(token);
         } else {
-          return res.status(400).send("Incorrect Credentials");
+          return next(new ApplicationError("Incorrect Credentials", 400));
         }
       }
     } catch (err) {
       console.log(err);
-      return res.status(200).send("Something went wrong");
+      return res.status(500).send(err.message || "Something went wrong");
     }
   }
 }

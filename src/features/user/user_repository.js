@@ -4,15 +4,20 @@ import UserModel from './user_schema.js';
 class UserRepository {
     async signUp(user){
         try {
+            const findEmail = await UserModel.findOne({email: user.email});
+            console.log("findEmail", findEmail);
+            if(findEmail){
+                throw new ApplicationError("email already exists", 400);
+            }
             //create instance of model
             const newUser = new UserModel(user);
             await newUser.save();
-            console.log(newUser);
+            // console.log(newUser);
             return newUser;
             
         } catch (error) {
-            console.log(error);
-            throw new ApplicationError("Something went wrong with database", 500);
+            console.log("error:", error);
+            throw new ApplicationError(error.message, error.code || 500);
         }
     }
 
