@@ -57,7 +57,7 @@ server.get("/", (req, res) => {
 // Error handling middleware
 server.use((err, req, res, next) => {
   if(err instanceof ApplicationError) {
-    console.log('**************');
+    console.log("**************", err.code);
     return res.status(err.code).send(err.message);
   }
 

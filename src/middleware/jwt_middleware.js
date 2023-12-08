@@ -17,21 +17,21 @@ const jwtAuth = (req, res, next) => {
     try {
         // const payload = jwt.verify(token, "pwuB6Ynnry");
         // console.log(payload);
-        jwt.verify(token, "pwuB6Ynnry", (err, user) => {
-          if (err) return res.sendStatus(403); // Forbidden
-          console.log('user', user);
+        jwt.verify(token, "AIb6d35fvJM4O9pXqXQNla2jBCH9kuLz", (err, user) => {
+          if (err) {
+            return res.sendStatus(403); // Forbidden
+          }
+          // console.log("user", user);
           req.user = user; // Store the user object in the request
           req.userID = user.userID;
-          //   next(); // Move to the next middleware
-        //   console.log('user', user)
+          next(); // Move to the next middleware
+          //   console.log('user', user)
         });
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return res.status(401).send("Unauthorized");
     }
-
-    next();
-
+    // call for next middleware
 }
 
 export default jwtAuth;
