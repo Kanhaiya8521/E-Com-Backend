@@ -15,7 +15,6 @@ class UserRepository {
   async signUp(user) {
     try {
       const findEmail = await UserModel.findOne({ email: user.email });
-      console.log("findEmail", findEmail);
       if (findEmail) {
         throw new Error("email already exists");
       }
@@ -26,7 +25,7 @@ class UserRepository {
       return newUser;
     } catch (error) {
       console.log("error:", error);
-      throw new Error(error);
+      throw new Error(error.message);
     }
   }
 
