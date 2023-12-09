@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 
-export const cartSchema = new Schema({
+export const cartSchema = new mongoose.Schema({
   productID: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Product"
+    ref: "Product",
   },
   userID: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
+    ref: "User",
   },
   quantity: Number,
 }); 

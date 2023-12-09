@@ -6,4 +6,14 @@ export const productSchema = new mongoose.Schema({
     category: String,
     description: String,
     inStock: Number,
-})
+    reviews: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Review"
+        }
+    ]
+});
+
+const Product = mongoose.model("Product", productSchema);
+
+export default Product;
