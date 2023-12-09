@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import mongoose from "mongoose";
 import CategoryModel from "./../features/product/category_schema.js";
-const url = process.env.MongoDB_url;
+const url = process.env.DB_url;
 console.log(url);
 const connectToMongoDB = async () => {
   try {
