@@ -14,20 +14,20 @@ export default class ProductController {
     }
   };
 
-  addProduct = async (req, res) => {
+  addProduct = async (req, res, next) => {
     try {
-      const { name, price, category, description, inStock } = req.body;
+      const { name, price, categories, description, inStock } = req.body;
       const newProduct = {
         name,
         price: parseFloat(price),
-        category,
+        categories,
         description,
         inStock,
       };
-      const createRecord = await this.productRepository.add(newProduct);
-      res.status(201).send(createRecord);
+      const createdRecord = await this.productRepository.add(newProduct);
+      res.status(201).send("createdRecord");
     } catch (error) {
-      next(new ApplicationError(error.message, error.code));
+      next(new ApplicationError(error.message, error.code || 500));
     }
   };
 

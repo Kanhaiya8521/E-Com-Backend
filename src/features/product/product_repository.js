@@ -1,13 +1,22 @@
 import { ObjectId } from "mongodb";
 import ProductModel from "./product_schema.js";
 import ReviewModel from "./review_schema.js";
+import CategoryModel from "./category_schema.js";
 export default class productRepository {
   async add(newProduct) {
     try {
-      const product = await ProductModel.create(newProduct);
-      return product;
+        newProduct.categories = newProduct.categories.split(",");
+        console.log(newProduct);
+      const product = await ProductModel(newProduct);
+      const savedProduct = await product.save();
+
+      // 2. Update categories.
+      await CategoryModel.updateMany(
+        {_id: {$in: newProduct.categories}},
+        {$push: {products: new ObjectId(savedProduct._id)}}
+      )
     } catch (error) {
-      new Error(error);
+      throw new Error(error);
     }
   }
   async GetAll() {
@@ -21,7 +30,8 @@ export default class productRepository {
   async rate(userID, productID, rating) {
     try {
       // 1. check if product exists
-      const productToUpdate = await ProductModel.findById(productID);
+      console.log(productID);
+      const productToUpdate = await ProductModel.findOne({_id: productID});
       if (!productToUpdate) {
         throw new Error("Product not fount");
       }
