@@ -230,3 +230,15 @@
 {"level":"info","message":"/api/products/getAllProduct - {\"name\":\"mobile\",\"price\":\"50\",\"category\":\"electronics\",\"description\":\"this is description\",\"inStock\":\"2\"}","service":"request-logging"}
 {"level":"info","message":"/api/products/getAllProduct - {\"name\":\"mobile\",\"price\":\"50\",\"category\":\"electronics\",\"description\":\"this is description\",\"inStock\":\"2\"}","service":"request-logging"}
 {"level":"info","message":"/api/products/getAllProduct - {\"name\":\"mobile\",\"price\":\"50\",\"category\":\"electronics\",\"description\":\"this is description\",\"inStock\":\"2\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signin - {\"email\":\"kanhaiya@gmail.com\",\"password\":\"12345\"}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate - {\"productID\":\"\",\"rating\":\"3\"}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate - {\"productID\":\"\",\"rating\":\"3\"}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate - {\"productID\":\"\",\"rating\":\"3\"}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate - {\"productID\":\"\",\"rating\":\"3\"}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate - {\"productID\":\"\",\"rating\":\"3\"}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate - {\"productID\":\"\",\"rating\":\"3\"}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate - {\"productID\":\"\",\"rating\":\"3\"}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate - {\"productID\":\"\",\"rating\":\"3\"}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate - {\"productID\":\"\",\"rating\":\"3\"}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate - {\"productID\":\"657412121cddf648ce84fd58\",\"rating\":\"3\"}","service":"request-logging"}
+{"level":"info","message":"/api/products/rate - {\"productID\":\"657412121cddf648ce84fd58\",\"rating\":\"3.5\"}","service":"request-logging"}

@@ -1,8 +1,7 @@
 import productRepository from "./product_repository.js";
-import {ApplicationError} from "./../../error_handler/applicationError.js";
+import { ApplicationError } from "./../../error_handler/applicationError.js";
 
 export default class ProductController {
-
   constructor() {
     this.productRepository = new productRepository();
   }
@@ -13,7 +12,7 @@ export default class ProductController {
     } catch (error) {
       next(new ApplicationError(error.message, error.code));
     }
-  }
+  };
 
   addProduct = async (req, res) => {
     try {
@@ -30,19 +29,19 @@ export default class ProductController {
     } catch (error) {
       next(new ApplicationError(error.message, error.code));
     }
-  }
+  };
 
-  // rateProduct(req, res) {
-  //   const userID = req.query.userID;
-  //   const productID = req.query.productID;
-  //   const rating = req.query.rating;
-  //   // try {
-  //     ProductModel.rateProduct(userID, productID, rating);
-  //   // } catch (error) {
-  //     // return res.status(400).send(error.message);
-  //   // }
-  //   return res.status(200).send("okay");
-  // }
+  rateProduct = async (req, res, next) => {
+    try {
+      const userID = req.userID;
+      const productID = req.body.productID;
+      const rating = req.body.rating;
+      await this.productRepository.rate(userID, productID, rating);
+      res.status(200).send("success");
+    } catch (error) {
+      next(new ApplicationError(error.message, error.code || 500));
+    }
+  };
 
   // getOneProduct(req, res) {
   //   const id = req.params.id;
