@@ -253,3 +253,10 @@
 {"level":"info","message":"/api/products/add - {\"name\":\"laptop\",\"price\":\"500\",\"categories\":\"65742f2414b357236b1604a2,65742f2414b357236b1604a3\",\"description\":\"this is description\",\"inStock\":\"1\"}","service":"request-logging"}
 {"level":"info","message":"/api/products/add - {\"name\":\"laptop\",\"price\":\"500\",\"categories\":\"65742f2414b357236b1604a2,65742f2414b357236b1604a3\",\"description\":\"this is description\",\"inStock\":\"1\"}","service":"request-logging"}
 {"level":"info","message":"/api/products/add - {\"name\":\"laptop\",\"price\":\"500\",\"categories\":\"65742f2414b357236b1604a2,65742f2414b357236b1604a3\",\"description\":\"this is description\",\"inStock\":\"1\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signin - {\"email\":\"kanhaiya@gmail.com\",\"password\":\"12345\"}","service":"request-logging"}
+{"level":"info","message":"/api/likes - {\"id\":\"657412121cddf648ce84fd58\",\"type\":\"Product\"}","service":"request-logging"}
+{"level":"info","message":"/api/likes - {\"id\":\"65742f2414b357236b1604a2\",\"type\":\"Category\"}","service":"request-logging"}
+{"level":"info","message":"/api/getLikes - {\"id\":\"65742f2414b357236b1604a2\",\"type\":\"Category\"}","service":"request-logging"}
+{"level":"info","message":"/api/likes/getLikes - {\"id\":\"65742f2414b357236b1604a2\",\"type\":\"Category\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signin - {\"email\":\"kanhaiya@gmail.com\",\"password\":\"12345\"}","service":"request-logging"}
+{"level":"info","message":"/api/likes/getLikes - {\"id\":\"65742f2414b357236b1604a2\",\"type\":\"Category\"}","service":"request-logging"}

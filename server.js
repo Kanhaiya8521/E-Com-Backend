@@ -7,6 +7,7 @@ import cors from 'cors';
 import productRouter from './src/features/product/product_router.js';
 import cartRouter from './src/features/cartItems/cart_items_routes.js'
 import userRouter from './src/features/user/user_routes.js';
+import likeRouter from "./src/features/like/like_router.js"
 import jwtAuth from "./src/middleware/jwt_middleware.js";
 // import apiDocs from './swagger.json';
 import apiDocs from "./swagger.json" assert { type: "json" };
@@ -49,6 +50,7 @@ server.use(loggerMiddleware);
 server.use("/api/products", jwtAuth, productRouter);
 server.use("/api/cartItems", jwtAuth, cartRouter);
 server.use("/api/users", userRouter);
+server.use("/api/likes", jwtAuth, likeRouter);
 
 server.get("/", (req, res) => {
   res.send("Welcome to the E-commerce website!");
